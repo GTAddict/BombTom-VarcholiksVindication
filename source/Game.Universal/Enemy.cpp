@@ -4,6 +4,8 @@
 #include "Player.h"
 #include "Bullet.h"
 
+#define SHOOT_INTERVAL_START	500
+#define SHOOT_INTERVAL_END		4000
 
 
 Enemy::Enemy(Player& player)
