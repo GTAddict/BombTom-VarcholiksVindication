@@ -43,6 +43,9 @@
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="MoodySprite.cpp" />
     <ClCompile Include="SpriteDemoManager.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="SpriteCache.cpp" />
+    <ClCompile Include="SpriteRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
@@ -54,6 +57,9 @@
     <ClInclude Include="Field.h" />
     <ClInclude Include="MoodySprite.h" />
     <ClInclude Include="SpriteDemoManager.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="SpriteRenderer.h" />
+    <ClInclude Include="SpriteCache.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\StoreLogo.png">
