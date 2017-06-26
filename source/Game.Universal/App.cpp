@@ -64,8 +64,8 @@ namespace DirectXGame
 	// Called when the CoreWindow object is created (or re-created).
 	void App::SetWindow(CoreWindow^ window)
 	{
-		// window->SizeChanged +=
-		// 	ref new TypedEventHandler<CoreWindow^, WindowSizeChangedEventArgs^>(this, &App::OnWindowSizeChanged);
+		window->SizeChanged +=
+			ref new TypedEventHandler<CoreWindow^, WindowSizeChangedEventArgs^>(this, &App::OnWindowSizeChanged);
 
 		window->VisibilityChanged +=
 			ref new TypedEventHandler<CoreWindow^, VisibilityChangedEventArgs^>(this, &App::OnVisibilityChanged);

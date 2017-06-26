@@ -2,15 +2,14 @@
 #include "Sprite.h"
 #include "SpriteCache.h"
 #include "SpriteRenderer.h"
+#include "SpriteManagerHelper.h"
 #include <cmath>
 
 using namespace DX;
 using namespace DirectX;
 
-Sprite::Sprite(SpriteCache& spriteCache, SpriteRenderer& spriteRenderer)
-	: mSpriteCache(spriteCache)
-	, mSpriteRenderer(spriteRenderer)
-	, mPosX(-1)
+Sprite::Sprite()
+	: mPosX(-1)
 	, mPosY(-1)
 	, mWidth(-1)
 	, mHeight(-1)
@@ -35,13 +34,13 @@ void Sprite::Init(std::string fileName, int x, int y, int width, int height, int
 
 	mLayerID = layer;
 
-	auto LoadSpriteTask	= Concurrency::create_task([this, fileName]() { mTexture = mSpriteCache.Load(fileName); });
-	LoadSpriteTask.then([this]() { mSpriteRenderer.Register(this, mLayerID); });
+	auto LoadSpriteTask	= Concurrency::create_task([this, fileName]() { mTexture = SpriteManagerHelper::GetInstance()->GetCache().Load(fileName); });
+	LoadSpriteTask.then([this]() { SpriteManagerHelper::GetInstance()->GetRenderer().Register(this, mLayerID); });
 }
 
 void Sprite::Destroy()
 {
-	mSpriteRenderer.UnRegister(this, mLayerID);
+	SpriteManagerHelper::GetInstance()->GetRenderer().UnRegister(this, mLayerID);
 }
 
 void Sprite::SetPosition(int x, int y)

@@ -47,4 +47,5 @@
 // Local
 #include "SpriteCache.h"
 #include "SpriteRenderer.h"
+#include "SpriteManagerHelper.h"
 #include "Sprite.h"

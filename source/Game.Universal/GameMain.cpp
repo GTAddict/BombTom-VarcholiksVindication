@@ -39,12 +39,14 @@ namespace DirectXGame
 		mComponents.push_back(fpsTextRenderer);
 
 		auto spriteRenderer = make_shared<SpriteRenderer>(mDeviceResources, camera);
+		SpriteManagerHelper::GetInstance()->SetRenderer(*spriteRenderer.get());
 		mComponents.push_back(spriteRenderer);
 
 		auto spriteCache = make_shared<SpriteCache>(mDeviceResources);
+		SpriteManagerHelper::GetInstance()->SetCache(*spriteCache.get());
 		mComponents.push_back(spriteCache);
 
-		auto testSprite = make_shared<Sprite>(*spriteCache, *spriteRenderer);
+		auto testSprite = make_shared<Sprite>();
 		testSprite->Init("Content\\Textures\\snoods_default.png", 0, 0, 0, 0, 1);
 		mSprites.push_back(testSprite);
 

@@ -8,7 +8,7 @@ class SpriteRenderer;
 class Sprite
 {
 public:
-	Sprite(SpriteCache& spriteCache, SpriteRenderer& spriteRenderer);
+	Sprite();
 	~Sprite();
 
 	void Init(std::string fileName, int x, int y, int width, int height, int layer);
@@ -36,9 +36,6 @@ public:
 
 
 protected:
-
-	SpriteCache&	mSpriteCache;
-	SpriteRenderer& mSpriteRenderer;
 
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>	mTexture;
 	int													mPosX;

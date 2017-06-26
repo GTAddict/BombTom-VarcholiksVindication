@@ -7,7 +7,8 @@ enum class Layers
 {
 	invalid = -1,
 	first = 0,
-	player = first,
+	background = first,
+	player,
 	enemy,
 	bullet,
 	count
