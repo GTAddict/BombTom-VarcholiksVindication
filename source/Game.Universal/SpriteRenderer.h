@@ -32,7 +32,7 @@ public:
 	virtual void CreateDeviceDependentResources() override;
 	virtual void ReleaseDeviceDependentResources() override;
 
-	void InitializeVertices();
+	void InitializeIndices();
 
 private:
 
@@ -53,10 +53,8 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11VertexShader>			mVertexShader;
 	Microsoft::WRL::ComPtr<ID3D11PixelShader>			mPixelShader;
 	Microsoft::WRL::ComPtr<ID3D11InputLayout>			mInputLayout;
-	Microsoft::WRL::ComPtr<ID3D11Buffer>				mVertexBuffer;
 	Microsoft::WRL::ComPtr<ID3D11Buffer>				mIndexBuffer;
 	Microsoft::WRL::ComPtr<ID3D11Buffer>				mVSCBufferPerObject;
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>	mSpriteSheet;
 	Microsoft::WRL::ComPtr<ID3D11SamplerState>			mTextureSampler;
 	Microsoft::WRL::ComPtr<ID3D11BlendState>			mAlphaBlending;
 	VSCBufferPerObject									mVSCBufferPerObjectData;

@@ -25,30 +25,24 @@ Player::~Player()
 
 void Player::SetPositionX(int x)
 {
-	// x -= 1920 / 2;
-
-	// if (x - mWidth / 2 < 0)
-	// {
-	// 	x = mWidth / 2;
-	// }
-	// 
-	// if (x + mWidth / 2 >= 1920)
-	// {
-	// 	x = 1920 - mWidth / 2;
-	// }
-	// 
-	// mPosX = x;
-	x;
-	mPosX = 0;
+	if (x - mWidth / 2 < 0)
+	{
+		x = mWidth / 2;
+	}
+	
+	if (x + mWidth / 2 >= 1920)
+	{
+		x = 1920 - mWidth / 2;
+	}
+	
+	mPosX = x;
 }
 
 void Player::SetPositionY(int y)
 {
 	// This is always clamped to a fixed value
 	UNREFERENCED_PARAMETER(y);
-	mPosY = 0;// -mHeight / 2;
-	//mPosY = 100;
-	// mPosY = 50;
+	mPosY = mHeight / 2;
 }
 
 void Player::UpdateFrame(long milliseconds)

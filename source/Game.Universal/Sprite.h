@@ -12,6 +12,7 @@ public:
 	~Sprite();
 
 	void Init(std::string fileName, int x, int y, int width, int height, float scale, int layer);
+	void InitializeVertices();
 	void Destroy();
 
 	void SetPosition(int x, int y);
@@ -34,6 +35,7 @@ public:
 	bool Intersects(Sprite* other);
 
 	const Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>&	GetTexture()			const { return mTexture; }
+	const Microsoft::WRL::ComPtr<ID3D11Buffer>&				GetVertexBuffer()		const { return mVertexBuffer; }
 	DX::Transform2D											GetTransform()			const;
 	DirectX::XMFLOAT4X4										GetTextureTransform()	const;
 
@@ -41,6 +43,8 @@ public:
 protected:
 
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>	mTexture;
+	Microsoft::WRL::ComPtr<ID3D11Buffer>				mVertexBuffer;
+
 	int													mPosX;
 	int													mPosY;
 	int													mWidth;

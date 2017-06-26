@@ -91,7 +91,7 @@ void SpriteRenderer::CreateDeviceDependentResources()
 		ThrowIfFailed(mDeviceResources->GetD3DDevice()->CreateBlendState(&blendStateDesc, mAlphaBlending.ReleaseAndGetAddressOf()));
 	});
 
-	(createPSTask && createVSTask).then([this]() { InitializeVertices(); mLoadingComplete = true; });
+	(createPSTask && createVSTask).then([this]() { InitializeIndices(); mLoadingComplete = true; });
 }
 
 void SpriteRenderer::ReleaseDeviceDependentResources()
@@ -99,32 +99,13 @@ void SpriteRenderer::ReleaseDeviceDependentResources()
 	mVertexShader.Reset();
 	mPixelShader.Reset();
 	mInputLayout.Reset();
-	mVertexBuffer.Reset();
 	mIndexBuffer.Reset();
 	mVSCBufferPerObject.Reset();
-	mSpriteSheet.Reset();
 	mTextureSampler.Reset();
 }
 
-void SpriteRenderer::InitializeVertices()
+void SpriteRenderer::InitializeIndices()
 {
-	VertexPositionTexture vertices[] =
-	{
-		VertexPositionTexture(XMFLOAT4(-1.0f, -1.0f, 0.0f, 1.0f), XMFLOAT2(0.0f, 1.0f)),
-		VertexPositionTexture(XMFLOAT4(-1.0f, 1.0f, 0.0f, 1.0f), XMFLOAT2(0.0f, 0.0f)),
-		VertexPositionTexture(XMFLOAT4(1.0f, 1.0f, 0.0f, 1.0f), XMFLOAT2(1.0f, 0.0f)),
-		VertexPositionTexture(XMFLOAT4(1.0f, -1.0f, 0.0f, 1.0f), XMFLOAT2(1.0f, 1.0f)),
-	};
-
-	D3D11_BUFFER_DESC vertexBufferDesc = { 0 };
-	vertexBufferDesc.ByteWidth = sizeof(VertexPositionTexture) * ARRAYSIZE(vertices);
-	vertexBufferDesc.Usage = D3D11_USAGE_IMMUTABLE;
-	vertexBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-
-	D3D11_SUBRESOURCE_DATA vertexSubResourceData = { 0 };
-	vertexSubResourceData.pSysMem = vertices;
-	ThrowIfFailed(mDeviceResources->GetD3DDevice()->CreateBuffer(&vertexBufferDesc, &vertexSubResourceData, mVertexBuffer.ReleaseAndGetAddressOf()));
-
 	// Create and index buffer
 	const uint32_t indices[] =
 	{
@@ -159,7 +140,7 @@ void SpriteRenderer::Render(const DX::StepTimer& timer)
 
 	static const UINT stride = sizeof(VertexPositionTexture);
 	static const UINT offset = 0;
-	direct3DDeviceContext->IASetVertexBuffers(0, 1, mVertexBuffer.GetAddressOf(), &stride, &offset);
+
 	direct3DDeviceContext->IASetIndexBuffer(mIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
 
 	direct3DDeviceContext->VSSetShader(mVertexShader.Get(), nullptr, 0);
@@ -179,6 +160,7 @@ void SpriteRenderer::Render(const DX::StepTimer& timer)
 			}
 
 			assert(sprite->GetTexture() != nullptr);
+			direct3DDeviceContext->IASetVertexBuffers(0, 1, sprite->GetVertexBuffer().GetAddressOf(), &stride, &offset);
 			direct3DDeviceContext->PSSetShaderResources(0, 1, sprite->GetTexture().GetAddressOf());
 
 			const XMMATRIX wvp = XMMatrixTranspose(sprite->GetTransform().WorldMatrix() * mCamera->ViewProjectionMatrix());

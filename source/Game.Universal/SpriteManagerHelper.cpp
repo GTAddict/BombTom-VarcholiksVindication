@@ -41,6 +41,11 @@ void SpriteManagerHelper::SetRenderer(SpriteRenderer& spriteRenderer)
 	mpSpriteRenderer = &spriteRenderer;
 }
 
+void SpriteManagerHelper::SetDeviceResources(const std::shared_ptr<DX::DeviceResources>& deviceResources)
+{
+	mDeviceResources = deviceResources;
+}
+
 SpriteCache& SpriteManagerHelper::GetCache()
 {
 	return *mpSpriteCache;
@@ -49,4 +54,9 @@ SpriteCache& SpriteManagerHelper::GetCache()
 SpriteRenderer& SpriteManagerHelper::GetRenderer()
 {
 	return *mpSpriteRenderer;
+}
+
+const std::shared_ptr<DX::DeviceResources>& SpriteManagerHelper::GetDeviceResources()
+{
+	return mDeviceResources;
 }

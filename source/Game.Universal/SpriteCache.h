@@ -15,6 +15,7 @@ public:
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>	GetTexture(const std::string& name);
 
 private:
-	std::map<std::string, Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>> spriteMap;
+	std::map<std::string, Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>> mSpriteMap;
+
 };
 

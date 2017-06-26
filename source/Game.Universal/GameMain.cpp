@@ -21,7 +21,7 @@ namespace DirectXGame
 
 		auto camera = make_shared<OrthographicCamera>(mDeviceResources);
 		mComponents.push_back(camera);
-		camera->SetPosition(0, 0, 1);
+		camera->SetPosition(1920 / 2, 1080 / 2, 1);
 
 		CoreWindow^ window = CoreWindow::GetForCurrentThread();
 		mKeyboard = make_shared<KeyboardComponent>(mDeviceResources);		
@@ -37,6 +37,8 @@ namespace DirectXGame
 
 		auto fpsTextRenderer = make_shared<FpsTextRenderer>(mDeviceResources);
 		mComponents.push_back(fpsTextRenderer);
+
+		SpriteManagerHelper::GetInstance()->SetDeviceResources(mDeviceResources);
 
 		auto spriteRenderer = make_shared<SpriteRenderer>(mDeviceResources, camera);
 		SpriteManagerHelper::GetInstance()->SetRenderer(*spriteRenderer.get());
@@ -56,10 +58,6 @@ namespace DirectXGame
 		enemyList.push_back(make_shared<Enemy>(*player.get()));
 		enemyTimerElapsedMs = 0;
 		dialogueTimeElapsedMs = 0;
-
-		// auto testSprite = make_shared<Sprite>();
-		// testSprite->Init("Content\\Textures\\snoods_default.png", 0, 0, 0, 0, 1);
-		// mSprites.push_back(testSprite);
 
 		mTimer.SetFixedTimeStep(true);
 		mTimer.SetTargetElapsedSeconds(1.0 / 60);
