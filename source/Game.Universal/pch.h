@@ -49,3 +49,7 @@
 #include "SpriteRenderer.h"
 #include "SpriteManagerHelper.h"
 #include "Sprite.h"
+
+#include "Background.h"
+#include "Player.h"
+#include "Enemy.h"

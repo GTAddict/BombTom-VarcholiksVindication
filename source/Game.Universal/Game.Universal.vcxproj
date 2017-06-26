@@ -240,7 +240,16 @@
     <Image Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Image Include="Assets\StoreLogo.png" />
     <Image Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Image Include="Content\Textures\board.png" />
+    <Image Include="Content\Textures\Books.png" />
+    <Image Include="Content\Textures\Krishna.png" />
+    <Image Include="Content\Textures\Lima.png" />
     <Image Include="Content\Textures\snoods_default.png" />
+    <Image Include="Content\Textures\Tom5.png" />
+    <Image Include="Content\Textures\TomFour.png" />
+    <Image Include="Content\Textures\TomOne.png" />
+    <Image Include="Content\Textures\TomThree.png" />
+    <Image Include="Content\Textures\TomTwo.png" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />

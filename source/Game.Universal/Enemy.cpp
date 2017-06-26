@@ -16,19 +16,19 @@ Enemy::Enemy(Player& player)
 	switch (randomSprite)
 	{
 	case 0:
-		Init("images\\TomOne.png", 0, 0, 40, 54, (int)Layers::enemy);
+		Init("Content\\Textures\\TomOne.png", 0, 0, 40, 54, 1, (int)Layers::enemy);
 		break;
 	case 1:
-		Init("images\\TomTwo.png", 0, 0, 40, 49, (int)Layers::enemy);
+		Init("Content\\Textures\\TomTwo.png", 0, 0, 40, 49, 1, (int)Layers::enemy);
 		break;
 	case 2:
-		Init("images\\TomThree.png", 0, 0, 39, 52, (int)Layers::enemy);
+		Init("Content\\Textures\\TomThree.png", 0, 0, 39, 52, 1, (int)Layers::enemy);
 		break;
 	case 3:
-		Init("images\\TomFour.png", 0, 0, 40, 46, (int)Layers::enemy);
+		Init("Content\\Textures\\TomFour.png", 0, 0, 40, 46, 1, (int)Layers::enemy);
 		break;
 	case 4:
-		Init("images\\Tom5.png", 0, 0, 40, 50, (int)Layers::enemy);
+		Init("Content\\Textures\\Tom5.png", 0, 0, 40, 50, 1, (int)Layers::enemy);
 		break;
 	}
 
@@ -60,32 +60,32 @@ void Enemy::SetPositionX(int x)
 {
 	mPosX = x;
 
-	if (x > 1920 - mWidth / 2)
-	{
-		x = 1920 - mWidth / 2;
-		mSpeedX = -mSpeedX;
-	}
-
-	if (x < mWidth / 2)
-	{
-		x = mWidth / 2;
-		mSpeedX = -mSpeedX;
-	}
+	// if (x > 1920 - mWidth / 2)
+	// {
+	// 	x = 1920 - mWidth / 2;
+	// 	mSpeedX = -mSpeedX;
+	// }
+	// 
+	// if (x < mWidth / 2)
+	// {
+	// 	x = mWidth / 2;
+	// 	mSpeedX = -mSpeedX;
+	// }
 }
 
 void Enemy::SetPositionY(int y)
 {
 	mPosY = y;
 
-	if (y > 1080 + mHeight / 2)
-	{
-		mIsAlive = false;
-	}
-
-	if (y < -mHeight / 2)
-	{
-		mIsAlive = false;
-	}
+	//if (y > 1080 + mHeight / 2)
+	//{
+	//	mIsAlive = false;
+	//}
+	//
+	//if (y < -mHeight / 2)
+	//{
+	//	mIsAlive = false;
+	//}
 }
 
 void Enemy::UpdateFrame(long milliseconds)

@@ -11,7 +11,7 @@ public:
 	Sprite();
 	~Sprite();
 
-	void Init(std::string fileName, int x, int y, int width, int height, int layer);
+	void Init(std::string fileName, int x, int y, int width, int height, float scale, int layer);
 	void Destroy();
 
 	void SetPosition(int x, int y);
@@ -24,7 +24,10 @@ public:
 	int GetWidth()					{ return mWidth; }
 	int GetHeight()					{ return mHeight; }
 
+	float GetScale()				{ return mScale; }
+
 	void SetVisible(bool visible)	{ mVisible = visible; }
+	bool GetVisible() const			{ return mVisible; }
 
 	virtual void UpdateFrame(long milliseconds) { UNREFERENCED_PARAMETER(milliseconds); }
 
@@ -42,6 +45,7 @@ protected:
 	int													mPosY;
 	int													mWidth;
 	int													mHeight;
+	float												mScale;
 	int													mLayerID;
 	bool												mVisible;
 };

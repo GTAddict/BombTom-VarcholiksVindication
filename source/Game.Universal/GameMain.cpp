@@ -46,9 +46,20 @@ namespace DirectXGame
 		SpriteManagerHelper::GetInstance()->SetCache(*spriteCache.get());
 		mComponents.push_back(spriteCache);
 
-		auto testSprite = make_shared<Sprite>();
-		testSprite->Init("Content\\Textures\\snoods_default.png", 0, 0, 0, 0, 1);
-		mSprites.push_back(testSprite);
+		// bg = make_shared<Background>(1920, 1080);
+		// mSprites.push_back(bg);
+		player = make_shared<Player>();
+		enemyList.push_back(make_shared<Enemy>(*player.get()));
+		enemyList.push_back(make_shared<Enemy>(*player.get()));
+		enemyList.push_back(make_shared<Enemy>(*player.get()));
+		enemyList.push_back(make_shared<Enemy>(*player.get()));
+		enemyList.push_back(make_shared<Enemy>(*player.get()));
+		enemyTimerElapsedMs = 0;
+		dialogueTimeElapsedMs = 0;
+
+		// auto testSprite = make_shared<Sprite>();
+		// testSprite->Init("Content\\Textures\\snoods_default.png", 0, 0, 0, 0, 1);
+		// mSprites.push_back(testSprite);
 
 		mTimer.SetFixedTimeStep(true);
 		mTimer.SetTargetElapsedSeconds(1.0 / 60);

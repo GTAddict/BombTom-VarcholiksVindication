@@ -173,6 +173,11 @@ void SpriteRenderer::Render(const DX::StepTimer& timer)
 		std::list<Sprite*> sprites = renderMap[(Layers)i];
 		for each (Sprite* sprite in sprites)
 		{
+			if (!sprite->GetVisible())
+			{
+				continue;
+			}
+
 			assert(sprite->GetTexture() != nullptr);
 			direct3DDeviceContext->PSSetShaderResources(0, 1, sprite->GetTexture().GetAddressOf());
 

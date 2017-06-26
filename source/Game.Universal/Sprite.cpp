@@ -23,8 +23,10 @@ Sprite::~Sprite()
 {
 }
 
-void Sprite::Init(std::string fileName, int x, int y, int width, int height, int layer)
+void Sprite::Init(std::string fileName, int x, int y, int width, int height, float scale, int layer)
 {
+
+	mScale = scale;
 
 	mWidth = width;
 	mHeight = height;
@@ -74,14 +76,12 @@ bool Sprite::Intersects(Sprite* other)
 
 DX::Transform2D Sprite::GetTransform() const
 {
-	return DX::Transform2D(DirectX::XMFLOAT2(static_cast<float>(mPosX), static_cast<float>(mPosY)), 0, XMFLOAT2(10.0, 10.0));
+	return DX::Transform2D(DirectX::XMFLOAT2(static_cast<float>(mPosX), static_cast<float>(mPosY)), 0, XMFLOAT2(mScale, mScale));
 }
 
 DirectX::XMFLOAT4X4 Sprite::GetTextureTransform() const
 {
-	static const float scale = 1.0f;
 	XMFLOAT4X4 Transform;
-	DirectX::XMMATRIX ScaleMatrix = DirectX::XMMatrixScaling(scale, scale, 0);
 	XMStoreFloat4x4(&Transform, ScaleMatrix);
 	return Transform;
 }

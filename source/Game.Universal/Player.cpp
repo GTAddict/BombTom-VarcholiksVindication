@@ -8,9 +8,10 @@
 #define ANTI_SPAM_LIMIT 750
 #define BURST_LIMIT 10
 
+//59,98
 Player::Player()
 {
-	Init("images\\Krishna.png", 0, 0, 59, 98, (int)Layers::player);
+	Init("Content\\Textures\\Krishna.png", 0, 0, 59, 98, 1.0f, (int)Layers::player);
 	SetSpeed(500);
 	mAlive = true;
 	mTimeSinceLastFire = ANTI_SPAM_LIMIT;
@@ -24,24 +25,30 @@ Player::~Player()
 
 void Player::SetPositionX(int x)
 {
-	if (x - mWidth / 2 < 0)
-	{
-		x = mWidth / 2;
-	}
+	// x -= 1920 / 2;
 
-	if (x + mWidth / 2 >= 1920)
-	{
-		x = 1920 - mWidth / 2;
-	}
-
-	mPosX = x;
+	// if (x - mWidth / 2 < 0)
+	// {
+	// 	x = mWidth / 2;
+	// }
+	// 
+	// if (x + mWidth / 2 >= 1920)
+	// {
+	// 	x = 1920 - mWidth / 2;
+	// }
+	// 
+	// mPosX = x;
+	x;
+	mPosX = 0;
 }
 
 void Player::SetPositionY(int y)
 {
 	// This is always clamped to a fixed value
 	UNREFERENCED_PARAMETER(y);
-	mPosY = mHeight / 2;
+	mPosY = 0;// -mHeight / 2;
+	//mPosY = 100;
+	// mPosY = 50;
 }
 
 void Player::UpdateFrame(long milliseconds)

@@ -13,6 +13,10 @@ namespace DX
 	class GamePadComponent;
 }
 
+class Background;
+class Player;
+class Enemy;
+
 // Renders Direct2D and 3D content on the screen.
 namespace DirectXGame
 {
@@ -38,5 +42,11 @@ namespace DirectXGame
 		std::shared_ptr<DX::KeyboardComponent> mKeyboard;
 		std::shared_ptr<DX::MouseComponent> mMouse;
 		std::shared_ptr<DX::GamePadComponent> mGamePad;
+
+		std::shared_ptr<Background> bg;
+		std::shared_ptr<Player> player;
+		std::list<std::shared_ptr<Enemy>> enemyList;
+		float enemyTimerElapsedMs;
+		float dialogueTimeElapsedMs;
 	};
 }
