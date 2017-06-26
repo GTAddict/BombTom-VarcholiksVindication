@@ -33,6 +33,6 @@ private:
 	float mShootTimer;
 
 	Player& mPlayer;
-	std::list<Bullet*> mBulletList;
+	std::list<std::shared_ptr<Bullet>> mBulletList;
 };
 

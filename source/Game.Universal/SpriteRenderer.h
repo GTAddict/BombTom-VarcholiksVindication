@@ -26,6 +26,7 @@ public:
 	~SpriteRenderer();
 
 	void Render(const DX::StepTimer& timer) override;
+	void Update(const DX::StepTimer& timer) override;
 	void Register(Sprite* sprite, int32_t layer);
 	void UnRegister(Sprite* sprite, int32_t layer);
 

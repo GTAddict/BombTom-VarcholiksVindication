@@ -10,6 +10,9 @@ using namespace Windows::ApplicationModel::Core;
 using namespace Windows::UI::Core;
 using namespace Concurrency;
 
+#define ENEMY_SPAWN_INTERVAL 1000
+#define DIALOGUE_INTERVAL 2000
+
 namespace DirectXGame
 {
 	// Loads and initializes application assets when the application is loaded.
@@ -48,14 +51,13 @@ namespace DirectXGame
 		SpriteManagerHelper::GetInstance()->SetCache(*spriteCache.get());
 		mComponents.push_back(spriteCache);
 
-		// bg = make_shared<Background>(1920, 1080);
-		// mSprites.push_back(bg);
-		player = make_shared<Player>();
-		enemyList.push_back(make_shared<Enemy>(*player.get()));
-		enemyList.push_back(make_shared<Enemy>(*player.get()));
-		enemyList.push_back(make_shared<Enemy>(*player.get()));
-		enemyList.push_back(make_shared<Enemy>(*player.get()));
-		enemyList.push_back(make_shared<Enemy>(*player.get()));
+		//bg = make_shared<Background>(1920, 1080);
+		player = make_shared<Player>(mKeyboard, mGamePad);
+		// enemyList.push_back(make_shared<Enemy>(*player.get()));
+		// enemyList.push_back(make_shared<Enemy>(*player.get()));
+		// enemyList.push_back(make_shared<Enemy>(*player.get()));
+		// enemyList.push_back(make_shared<Enemy>(*player.get()));
+		// enemyList.push_back(make_shared<Enemy>(*player.get()));
 		enemyTimerElapsedMs = 0;
 		dialogueTimeElapsedMs = 0;
 
@@ -79,15 +81,84 @@ namespace DirectXGame
 		}
 	}
 
+	void GameMain::RandomTom()
+	{
+		/*int randomDialogue = rand() % 5;
+		switch (randomDialogue)
+		{
+		case 0:
+			PlaySound("sound\\Assignments.wav", NULL, SND_ASYNC);
+			break;
+		case 1:
+			PlaySound("sound\\Exams.wav", NULL, SND_ASYNC);
+			break;
+		case 2:
+			PlaySound("sound\\Finals.wav", NULL, SND_ASYNC);
+			break;
+		case 3:
+			PlaySound("sound\\Homework.wav", NULL, SND_ASYNC);
+			break;
+		case 4:
+			PlaySound("sound\\Projects.wav", NULL, SND_ASYNC);
+			break;
+		}*/
+	}
+
 	// Updates the application state once per frame.
 	void GameMain::Update()
 	{
 		// Update scene objects.
 		mTimer.Tick([&]()
 		{
+			long milliseconds = static_cast<long>(mTimer.GetElapsedSeconds() * 1000);
+			enemyTimerElapsedMs += milliseconds;
+			dialogueTimeElapsedMs += milliseconds;
+
 			for (auto& component : mComponents)
 			{
 				component->Update(mTimer);
+			}
+
+			player->UpdateFrame(milliseconds);
+
+			std::list<std::shared_ptr<Enemy>> pendingKill;
+
+			for (auto enemy : enemyList)
+			{
+				if (enemy->IsAlive())
+				{
+					enemy->UpdateFrame(milliseconds);
+				}
+				else
+				{
+					RandomTom();
+					pendingKill.push_back(enemy);
+				}
+			}
+
+			for (auto enemy : pendingKill)
+			{
+				enemyList.remove(enemy);
+			}
+
+			pendingKill.clear();
+
+			if (enemyTimerElapsedMs >= ENEMY_SPAWN_INTERVAL)
+			{
+				enemyTimerElapsedMs -= ENEMY_SPAWN_INTERVAL;
+
+				auto enemy = std::make_shared<Enemy>(*player);
+				int randomX = (rand() % (1920 - player->GetWidth())) + player->GetWidth() / 2;
+
+				enemy->SetPosition(randomX, 1080 - player->GetHeight() / 2);
+
+				enemyList.push_back(enemy);
+			}
+
+			if (!player->GetAlive())
+			{
+				RandomTom();
+				CoreApplication::Exit();
 			}
 
 			if (mKeyboard->WasKeyPressedThisFrame(Keys::Escape) ||

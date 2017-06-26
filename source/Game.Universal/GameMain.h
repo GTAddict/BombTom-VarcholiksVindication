@@ -32,6 +32,8 @@ namespace DirectXGame
 		virtual void OnDeviceLost();
 		virtual void OnDeviceRestored();
 
+		void RandomTom();
+
 	private:
 		void IntializeResources();
 

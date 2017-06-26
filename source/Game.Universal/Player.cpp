@@ -8,14 +8,16 @@
 #define ANTI_SPAM_LIMIT 750
 #define BURST_LIMIT 10
 
-//59,98
-Player::Player()
+Player::Player(std::shared_ptr<DX::KeyboardComponent> keyboardComponent, std::shared_ptr<DX::GamePadComponent> gamepadComponent)
 {
 	Init("Content\\Textures\\Krishna.png", 0, 0, 59, 98, 1.0f, (int)Layers::player);
 	SetSpeed(500);
 	mAlive = true;
 	mTimeSinceLastFire = ANTI_SPAM_LIMIT;
 	mBulletsInBurstRemaining = BURST_LIMIT;
+
+	mKeyboardComponent = keyboardComponent;
+	mGamepadComponent = gamepadComponent;
 }
 
 
@@ -49,9 +51,9 @@ void Player::UpdateFrame(long milliseconds)
 {
 	mTimeSinceLastFire += milliseconds;
 
-	std::list<Bullet*> pendingKill;
+	std::list<std::shared_ptr<Bullet>> pendingKill;
 
-	for each (Bullet* bullet in mBulletList)
+	for (auto bullet : mBulletList)
 	{
 		if (bullet && bullet->IsAlive())
 		{
@@ -63,31 +65,30 @@ void Player::UpdateFrame(long milliseconds)
 		}
 	}
 
-	for each (Bullet* bullet in pendingKill)
+	for (auto bullet : pendingKill)
 	{
 		mBulletList.remove(bullet);
-		delete bullet;
 	}
 
 	pendingKill.clear();
 
-	//if (IsKeyDown(VK_LEFT))
+	if (mKeyboardComponent->IsKeyDown(DX::Keys::Left) || mGamepadComponent->IsButtonDown(DX::GamePadButtons::DPadLeft))
 	{
 		SetPositionX((int) (mPosX - mSpeed * milliseconds));
 	}
 
-	//if (IsKeyDown(VK_RIGHT))
+	if (mKeyboardComponent->IsKeyDown(DX::Keys::Right) || mGamepadComponent->IsButtonDown(DX::GamePadButtons::DPadRight))
 	{
 		SetPositionX((int) (mPosX + mSpeed * milliseconds));
 	}
 
-	//if (IsKeyDown(VK_SPACE))
+	if (mKeyboardComponent->IsKeyDown(DX::Keys::Space) || mGamepadComponent->IsButtonDown(DX::GamePadButtons::X))
 	{
-		if (mBulletsInBurstRemaining > 0)
+ 		if (mBulletsInBurstRemaining > 0)
 		{
 			mTimeSinceLastFire = 0;
 			mBulletsInBurstRemaining--;
-			Bullet* bullet = new Bullet(mPosX, mPosY, BulletType::LIMA);
+			auto bullet = std::make_shared<Bullet>(mPosX, mPosY, BulletType::LIMA);
 			mBulletList.push_back(bullet);
 		}
 		else if (mBulletsInBurstRemaining == 0)

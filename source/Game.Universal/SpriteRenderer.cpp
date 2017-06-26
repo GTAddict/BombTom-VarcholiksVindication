@@ -152,14 +152,13 @@ void SpriteRenderer::Render(const DX::StepTimer& timer)
 	for (int32_t i = 0; i <= (int32_t)Layers::count; ++i)
 	{
 		std::list<Sprite*> sprites = renderMap[(Layers)i];
-		for each (Sprite* sprite in sprites)
+		for (auto sprite : sprites)
 		{
-			if (!sprite->GetVisible())
+			if (!sprite->GetVisible() || !sprite || !sprite->GetTexture())
 			{
 				continue;
 			}
 
-			assert(sprite->GetTexture() != nullptr);
 			direct3DDeviceContext->IASetVertexBuffers(0, 1, sprite->GetVertexBuffer().GetAddressOf(), &stride, &offset);
 			direct3DDeviceContext->PSSetShaderResources(0, 1, sprite->GetTexture().GetAddressOf());
 
@@ -171,6 +170,17 @@ void SpriteRenderer::Render(const DX::StepTimer& timer)
 			direct3DDeviceContext->UpdateSubresource(mVSCBufferPerObject.Get(), 0, nullptr, &mVSCBufferPerObjectData, 0, 0);
 
 			direct3DDeviceContext->DrawIndexed(mIndexCount, 0, 0);
+		}
+	}
+}
+
+void SpriteRenderer::Update(const DX::StepTimer& timer)
+{
+	for (auto spriteList : renderMap)
+	{
+		for (auto sprite : spriteList.second)
+		{
+			sprite->UpdateFrame(static_cast<long>(timer.GetElapsedSeconds() * 1000));
 		}
 	}
 }

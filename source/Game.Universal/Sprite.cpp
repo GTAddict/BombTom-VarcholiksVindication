@@ -20,7 +20,8 @@ Sprite::Sprite()
 
 
 Sprite::~Sprite()
-{
+ {
+	Destroy();
 }
 
 void Sprite::Init(std::string fileName, int x, int y, int width, int height, float scale, int layer)
