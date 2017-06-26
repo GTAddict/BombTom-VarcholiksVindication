@@ -14,6 +14,8 @@ using namespace Windows::System;
 using namespace Windows::Foundation;
 using namespace Windows::Graphics::Display;
 
+Size ApplicationSize(1920, 1080);
+
 // The main function is only used to initialize our IFrameworkView class.
 [Platform::MTAThread]
 int main(Platform::Array<Platform::String^>^)
@@ -62,8 +64,8 @@ namespace DirectXGame
 	// Called when the CoreWindow object is created (or re-created).
 	void App::SetWindow(CoreWindow^ window)
 	{
-		window->SizeChanged +=
-			ref new TypedEventHandler<CoreWindow^, WindowSizeChangedEventArgs^>(this, &App::OnWindowSizeChanged);
+		// window->SizeChanged +=
+		// 	ref new TypedEventHandler<CoreWindow^, WindowSizeChangedEventArgs^>(this, &App::OnWindowSizeChanged);
 
 		window->VisibilityChanged +=
 			ref new TypedEventHandler<CoreWindow^, VisibilityChangedEventArgs^>(this, &App::OnVisibilityChanged);
@@ -83,6 +85,7 @@ namespace DirectXGame
 			ref new TypedEventHandler<DisplayInformation^, Object^>(this, &App::OnDisplayContentsInvalidated);
 
 		mDeviceResources->SetWindow(window);
+		mDeviceResources->SetLogicalSize(ApplicationSize);
 	}
 
 	// Initializes scene resources, or loads a previously saved app state.

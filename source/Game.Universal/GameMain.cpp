@@ -38,19 +38,15 @@ namespace DirectXGame
 		auto fpsTextRenderer = make_shared<FpsTextRenderer>(mDeviceResources);
 		mComponents.push_back(fpsTextRenderer);
 
-		auto fieldManager = make_shared<FieldManager>(mDeviceResources, camera);
-		mComponents.push_back(fieldManager);
+		auto spriteRenderer = make_shared<SpriteRenderer>(mDeviceResources, camera);
+		mComponents.push_back(spriteRenderer);
 
-		auto ballManager = make_shared<BallManager>(mDeviceResources, camera);
-		ballManager->SetActiveField(fieldManager->ActiveField());
-		mComponents.push_back(ballManager);		
+		auto spriteCache = make_shared<SpriteCache>(mDeviceResources);
+		mComponents.push_back(spriteCache);
 
-		const int32_t spriteRowCount = 12;
-		const int32_t spriteColumnCount = 15;
-		auto spriteDemoManager = make_shared<SpriteDemoManager>(mDeviceResources, camera, spriteRowCount, spriteColumnCount);		
-		const XMFLOAT2 center((-spriteColumnCount + 1) * SpriteDemoManager::SpriteScale.x, (-spriteRowCount + 1) * SpriteDemoManager::SpriteScale.y);
-		spriteDemoManager->SetPositon(center);
-		mComponents.push_back(spriteDemoManager);
+		auto testSprite = make_shared<Sprite>(*spriteCache, *spriteRenderer);
+		testSprite->Init("Content\\Textures\\snoods_default.png", 0, 0, 0, 0, 1);
+		mSprites.push_back(testSprite);
 
 		mTimer.SetFixedTimeStep(true);
 		mTimer.SetTargetElapsedSeconds(1.0 / 60);

@@ -60,6 +60,7 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11BlendState>			mAlphaBlending;
 	VSCBufferPerObject									mVSCBufferPerObjectData;
 	std::uint32_t										mIndexCount;
+	bool												mLoadingComplete;
 
 	RenderMap_t renderMap;
 };

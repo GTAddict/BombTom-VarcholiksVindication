@@ -5,6 +5,7 @@
 #include <cmath>
 
 using namespace DX;
+using namespace DirectX;
 
 Sprite::Sprite(SpriteCache& spriteCache, SpriteRenderer& spriteRenderer)
 	: mSpriteCache(spriteCache)
@@ -34,7 +35,7 @@ void Sprite::Init(std::string fileName, int x, int y, int width, int height, int
 
 	mLayerID = layer;
 
-	auto LoadSpriteTask	= Concurrency::create_task([this, &fileName]() { mTexture = mSpriteCache.Load(fileName); });
+	auto LoadSpriteTask	= Concurrency::create_task([this, fileName]() { mTexture = mSpriteCache.Load(fileName); });
 	LoadSpriteTask.then([this]() { mSpriteRenderer.Register(this, mLayerID); });
 }
 
@@ -74,11 +75,14 @@ bool Sprite::Intersects(Sprite* other)
 
 DX::Transform2D Sprite::GetTransform() const
 {
-	return DX::Transform2D(DirectX::XMFLOAT2(static_cast<float>(mPosX), static_cast<float>(mPosY)));
+	return DX::Transform2D(DirectX::XMFLOAT2(static_cast<float>(mPosX), static_cast<float>(mPosY)), 0, XMFLOAT2(10.0, 10.0));
 }
 
-const DirectX::XMFLOAT4X4& Sprite::GetTextureTransform() const
+DirectX::XMFLOAT4X4 Sprite::GetTextureTransform() const
 {
-	static auto Scale = MatrixHelper::Identity;
-	return Scale;
+	static const float scale = 1.0f;
+	XMFLOAT4X4 Transform;
+	DirectX::XMMATRIX ScaleMatrix = DirectX::XMMatrixScaling(scale, scale, 0);
+	XMStoreFloat4x4(&Transform, ScaleMatrix);
+	return Transform;
 }

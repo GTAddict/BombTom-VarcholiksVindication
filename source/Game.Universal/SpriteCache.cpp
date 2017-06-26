@@ -16,21 +16,14 @@ SpriteCache::~SpriteCache()
 
 Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> SpriteCache::Load(const std::string& name)
 {
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> sprite;
-
-	// If it exists already
-	if (spriteMap.find(name) != spriteMap.end())
-	{
-		sprite = spriteMap[name];
-	}
-	else // Otherwise, add it
+	// If it doesn't exist, add it
+	if (spriteMap.find(name) == spriteMap.end())
 	{
 		std::wstring wName(name.begin(), name.end());
-		ThrowIfFailed(CreateWICTextureFromFile(mDeviceResources->GetD3DDevice(), wName.c_str(), nullptr, sprite.ReleaseAndGetAddressOf()));
-		spriteMap[name] = sprite;
+		ThrowIfFailed(CreateWICTextureFromFile(mDeviceResources->GetD3DDevice(), wName.c_str(), nullptr, spriteMap[name].ReleaseAndGetAddressOf()));
 	}
-
-	return sprite;
+	
+	return spriteMap[name];
 }
 
 Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> SpriteCache::GetTexture(const std::string& name)

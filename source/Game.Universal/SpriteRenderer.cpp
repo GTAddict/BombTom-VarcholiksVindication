@@ -8,6 +8,7 @@ using namespace DirectX;
 
 SpriteRenderer::SpriteRenderer(const std::shared_ptr<DX::DeviceResources>& deviceResources, const std::shared_ptr<DX::Camera>& camera)
 	: DrawableGameComponent(deviceResources, camera)
+	, mLoadingComplete(false)
 {
 }
 
@@ -90,7 +91,7 @@ void SpriteRenderer::CreateDeviceDependentResources()
 		ThrowIfFailed(mDeviceResources->GetD3DDevice()->CreateBlendState(&blendStateDesc, mAlphaBlending.ReleaseAndGetAddressOf()));
 	});
 
-	(createPSTask && createVSTask).then([this]() { InitializeVertices(); });
+	(createPSTask && createVSTask).then([this]() { InitializeVertices(); mLoadingComplete = true; });
 }
 
 void SpriteRenderer::ReleaseDeviceDependentResources()
@@ -147,6 +148,11 @@ void SpriteRenderer::Render(const DX::StepTimer& timer)
 {
 	UNREFERENCED_PARAMETER(timer);
 
+	if (!mLoadingComplete)
+	{
+		return;
+	}
+
 	ID3D11DeviceContext* direct3DDeviceContext = mDeviceResources->GetD3DDeviceContext();
 	direct3DDeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	direct3DDeviceContext->IASetInputLayout(mInputLayout.Get());
@@ -167,11 +173,13 @@ void SpriteRenderer::Render(const DX::StepTimer& timer)
 		std::list<Sprite*> sprites = renderMap[(Layers)i];
 		for each (Sprite* sprite in sprites)
 		{
+			assert(sprite->GetTexture() != nullptr);
 			direct3DDeviceContext->PSSetShaderResources(0, 1, sprite->GetTexture().GetAddressOf());
 
 			const XMMATRIX wvp = XMMatrixTranspose(sprite->GetTransform().WorldMatrix() * mCamera->ViewProjectionMatrix());
 			XMStoreFloat4x4(&mVSCBufferPerObjectData.WorldViewProjection, wvp);
-			XMMATRIX textureTransform = XMLoadFloat4x4(&sprite->GetTextureTransform());
+			XMFLOAT4X4 textureTransformF4x4 = sprite->GetTextureTransform();
+			XMMATRIX textureTransform = XMLoadFloat4x4(&textureTransformF4x4);
 			XMStoreFloat4x4(&mVSCBufferPerObjectData.TextureTransform, XMMatrixTranspose(textureTransform));
 			direct3DDeviceContext->UpdateSubresource(mVSCBufferPerObject.Get(), 0, nullptr, &mVSCBufferPerObjectData, 0, 0);
 

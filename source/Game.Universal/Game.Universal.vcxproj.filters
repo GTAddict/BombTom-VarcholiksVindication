@@ -37,12 +37,6 @@
     <ClCompile Include="App.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="GameMain.cpp" />
-    <ClCompile Include="Ball.cpp" />
-    <ClCompile Include="BallManager.cpp" />
-    <ClCompile Include="FieldManager.cpp" />
-    <ClCompile Include="Field.cpp" />
-    <ClCompile Include="MoodySprite.cpp" />
-    <ClCompile Include="SpriteDemoManager.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteCache.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
@@ -51,12 +45,6 @@
     <ClInclude Include="App.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="GameMain.h" />
-    <ClInclude Include="Ball.h" />
-    <ClInclude Include="BallManager.h" />
-    <ClInclude Include="FieldManager.h" />
-    <ClInclude Include="Field.h" />
-    <ClInclude Include="MoodySprite.h" />
-    <ClInclude Include="SpriteDemoManager.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="SpriteCache.h" />
@@ -77,12 +65,6 @@
     <None Include="Game.Universal_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Content\Shaders\ShapeRendererVS.hlsl">
-      <Filter>Content\Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="Content\Shaders\ShapeRendererPS.hlsl">
-      <Filter>Content\Shaders</Filter>
-    </FxCompile>
     <FxCompile Include="Content\Shaders\SpriteRendererVS.hlsl">
       <Filter>Content\Shaders</Filter>
     </FxCompile>

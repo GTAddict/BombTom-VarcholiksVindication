@@ -30,9 +30,9 @@ public:
 
 	bool Intersects(Sprite* other);
 
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>	GetTexture()			const { return mTexture; }
-	DX::Transform2D										GetTransform()			const;
-	const DirectX::XMFLOAT4X4&							GetTextureTransform()	const;
+	const Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>&	GetTexture()			const { return mTexture; }
+	DX::Transform2D											GetTransform()			const;
+	DirectX::XMFLOAT4X4										GetTextureTransform()	const;
 
 
 protected:
