@@ -51,7 +51,7 @@ namespace DirectXGame
 		SpriteManagerHelper::GetInstance()->SetCache(*spriteCache.get());
 		mComponents.push_back(spriteCache);
 
-		//bg = make_shared<Background>(1920, 1080);
+		bg = make_shared<Background>(1920, 1080);
 		player = make_shared<Player>(mKeyboard, mGamePad);
 		enemyTimerElapsedMs = 0;
 		dialogueTimeElapsedMs = 0;
@@ -183,11 +183,10 @@ namespace DirectXGame
 
 		// Reset render targets to the screen.
 		ID3D11RenderTargetView *const targets[1] = { mDeviceResources->GetBackBufferRenderTargetView() };
-		context->OMSetRenderTargets(1, targets, mDeviceResources->GetDepthStencilView());
+		context->OMSetRenderTargets(1, targets, nullptr);
 
 		// Clear the back buffer and depth stencil view.
 		context->ClearRenderTargetView(mDeviceResources->GetBackBufferRenderTargetView(), DirectX::Colors::Black);
-		context->ClearDepthStencilView(mDeviceResources->GetDepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
 		for (auto& component : mComponents)
 		{

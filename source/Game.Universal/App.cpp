@@ -84,6 +84,11 @@ namespace DirectXGame
 		DisplayInformation::DisplayContentsInvalidated +=
 			ref new TypedEventHandler<DisplayInformation^, Object^>(this, &App::OnDisplayContentsInvalidated);
 
+
+		Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->SetPreferredMinSize(ApplicationSize);
+		Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->PreferredLaunchViewSize = ApplicationSize;
+		Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->PreferredLaunchWindowingMode = Windows::UI::ViewManagement::ApplicationViewWindowingMode::FullScreen;
+
 		mDeviceResources->SetWindow(window);
 		mDeviceResources->SetLogicalSize(ApplicationSize);
 	}
