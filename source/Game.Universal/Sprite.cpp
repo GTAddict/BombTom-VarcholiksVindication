@@ -5,6 +5,19 @@
 #include "SpriteManagerHelper.h"
 #include <cmath>
 
+const std::map<SpriteType, std::string> Sprite::mTextureMap =
+{
+	{ SpriteType::TomOne,			"Content\\Textures\\TomOne.png"		},
+	{ SpriteType::TomTwo,			"Content\\Textures\\TomTwo.png"		},
+	{ SpriteType::TomThree,			"Content\\Textures\\TomThree.png"	},
+	{ SpriteType::TomFour,			"Content\\Textures\\TomFour.png"	},
+	{ SpriteType::Tom5,				"Content\\Textures\\Tom5.png"		},
+	{ SpriteType::Krishna,			"Content\\Textures\\Krishna.png"	},
+	{ SpriteType::RegularBullet,	"Content\\Textures\\Books.png"		},
+	{ SpriteType::LimaBullet,		"Content\\Textures\\Lima.png"		},
+	{ SpriteType::Board,			"Content\\Textures\\board.png"		}
+};
+
 using namespace DX;
 using namespace DirectX;
 
@@ -24,7 +37,7 @@ Sprite::~Sprite()
 	Destroy();
 }
 
-void Sprite::Init(std::string fileName, int x, int y, int width, int height, float scale, int layer)
+void Sprite::Init(SpriteType sprite, int x, int y, int width, int height, float scale, int layer)
 {
 
 	mScale = scale;
@@ -37,8 +50,9 @@ void Sprite::Init(std::string fileName, int x, int y, int width, int height, flo
 
 	mLayerID = layer;
 
-	auto LoadSpriteTask = Concurrency::create_task([this, fileName]() { mTexture = SpriteManagerHelper::GetInstance()->GetCache().Load(fileName); InitializeVertices();  });
-	LoadSpriteTask.then([this]() { SpriteManagerHelper::GetInstance()->GetRenderer().Register(this, mLayerID); });
+	mTexture = SpriteManagerHelper::GetInstance()->GetCache().GetTexture(ToTextureName(sprite));
+	InitializeVertices();
+	SpriteManagerHelper::GetInstance()->GetRenderer().Register(this, mLayerID);
 }
 
 void Sprite::InitializeVertices()
@@ -107,4 +121,9 @@ DirectX::XMFLOAT4X4 Sprite::GetTextureTransform() const
 	DirectX::XMMATRIX ScaleMatrix = XMMatrixScaling(1.0f, 1.0f, 0.0f);
 	XMStoreFloat4x4(&Transform, ScaleMatrix);
 	return Transform;
+}
+
+const std::string& Sprite::ToTextureName(SpriteType sprite)
+{
+	return mTextureMap.at(sprite);
 }

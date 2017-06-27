@@ -53,11 +53,6 @@ namespace DirectXGame
 
 		//bg = make_shared<Background>(1920, 1080);
 		player = make_shared<Player>(mKeyboard, mGamePad);
-		// enemyList.push_back(make_shared<Enemy>(*player.get()));
-		// enemyList.push_back(make_shared<Enemy>(*player.get()));
-		// enemyList.push_back(make_shared<Enemy>(*player.get()));
-		// enemyList.push_back(make_shared<Enemy>(*player.get()));
-		// enemyList.push_back(make_shared<Enemy>(*player.get()));
 		enemyTimerElapsedMs = 0;
 		dialogueTimeElapsedMs = 0;
 

@@ -16,19 +16,19 @@ Enemy::Enemy(Player& player)
 	switch (randomSprite)
 	{
 	case 0:
-		Init("Content\\Textures\\TomOne.png", 0, 0, 40, 54, 1, (int)Layers::enemy);
+		Init(SpriteType::TomOne, 0, 0, 40, 54, 1, (int)Layers::enemy);
 		break;
 	case 1:
-		Init("Content\\Textures\\TomTwo.png", 0, 0, 40, 49, 1, (int)Layers::enemy);
+		Init(SpriteType::TomTwo, 0, 0, 40, 49, 1, (int)Layers::enemy);
 		break;
 	case 2:
-		Init("Content\\Textures\\TomThree.png", 0, 0, 39, 52, 1, (int)Layers::enemy);
+		Init(SpriteType::TomThree, 0, 0, 39, 52, 1, (int)Layers::enemy);
 		break;
 	case 3:
-		Init("Content\\Textures\\TomFour.png", 0, 0, 40, 46, 1, (int)Layers::enemy);
+		Init(SpriteType::TomFour, 0, 0, 40, 46, 1, (int)Layers::enemy);
 		break;
 	case 4:
-		Init("Content\\Textures\\Tom5.png", 0, 0, 40, 50, 1, (int)Layers::enemy);
+		Init(SpriteType::Tom5, 0, 0, 40, 50, 1, (int)Layers::enemy);
 		break;
 	}
 

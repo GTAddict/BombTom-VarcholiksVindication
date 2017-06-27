@@ -5,13 +5,29 @@
 class SpriteCache;
 class SpriteRenderer;
 
+enum class SpriteType : std::uint8_t
+{
+	Invalid = 0,
+	First = 1,
+	TomOne = First,
+	TomTwo,
+	TomThree,
+	TomFour,
+	Tom5,
+	Krishna,
+	RegularBullet,
+	LimaBullet,
+	Board,
+	Count
+};
+
 class Sprite
 {
 public:
 	Sprite();
 	virtual ~Sprite();
 
-	void Init(std::string fileName, int x, int y, int width, int height, float scale, int layer);
+	void Init(SpriteType sprite, int x, int y, int width, int height, float scale, int layer);
 	void InitializeVertices();
 	void Destroy();
 
@@ -39,18 +55,21 @@ public:
 	DX::Transform2D											GetTransform()			const;
 	DirectX::XMFLOAT4X4										GetTextureTransform()	const;
 
+	static const std::string&								ToTextureName(SpriteType sprite);
 
 protected:
 
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>	mTexture;
-	Microsoft::WRL::ComPtr<ID3D11Buffer>				mVertexBuffer;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>		mTexture;
+	Microsoft::WRL::ComPtr<ID3D11Buffer>					mVertexBuffer;
 
-	int													mPosX;
-	int													mPosY;
-	int													mWidth;
-	int													mHeight;
-	float												mScale;
-	int													mLayerID;
-	bool												mVisible;
+	int														mPosX;
+	int														mPosY;
+	int														mWidth;
+	int														mHeight;
+	float													mScale;
+	int														mLayerID;
+	bool													mVisible;
+
+	static const std::map<SpriteType, std::string>			mTextureMap;
 };
 

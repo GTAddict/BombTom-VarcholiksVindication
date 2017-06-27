@@ -7,6 +7,10 @@ using namespace DirectX;
 SpriteCache::SpriteCache(const std::shared_ptr<DX::DeviceResources>& deviceResources)
 	: GameComponent(deviceResources)
 {
+	for (std::uint8_t i = static_cast<std::uint8_t>(SpriteType::First); i < static_cast<std::uint8_t>(SpriteType::Count); ++i)
+	{
+		Load(Sprite::ToTextureName(static_cast<SpriteType>(i)));
+	}
 }
 
 

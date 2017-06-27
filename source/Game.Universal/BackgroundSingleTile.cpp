@@ -5,7 +5,7 @@
 
 BackgroundSingleTile::BackgroundSingleTile(int x, int y, int width, int height)
 {
-	Init("Content\\Textures\\board.png", x, y, width, height, 1, (int) Layers::background);
+	Init(SpriteType::Board, x, y, width, height, 1, (int) Layers::background);
 }
 
 

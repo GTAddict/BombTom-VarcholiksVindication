@@ -7,11 +7,11 @@ Bullet::Bullet(int x, int y, BulletType bulletType)
 {
 	if (bulletType == BulletType::REGULAR)
 	{
-		Init("Content\\Textures\\Books.png", x, y, 27, 20, 1, (int)Layers::bullet);
+		Init(SpriteType::RegularBullet, x, y, 27, 20, 1, (int)Layers::bullet);
 	}
 	else if (bulletType == BulletType::LIMA)
 	{
-		Init("Content\\Textures\\Lima.png", x, y, 20, 20, 1, (int)Layers::bullet);
+		Init(SpriteType::LimaBullet, x, y, 20, 20, 1, (int)Layers::bullet);
 	}
 
 	SetSpeed(1000);
