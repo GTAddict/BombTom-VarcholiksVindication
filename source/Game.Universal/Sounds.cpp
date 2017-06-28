@@ -14,6 +14,15 @@ Sounds::Sounds(std::shared_ptr<DX::DeviceResources> deviceResources)
 	mTomSounds.push_back(std::make_unique<SoundEffect>(mAudioEngine.get(), L"Content\\Sounds\\Finals.wav"));
 	mTomSounds.push_back(std::make_unique<SoundEffect>(mAudioEngine.get(), L"Content\\Sounds\\Homework.wav"));
 	mTomSounds.push_back(std::make_unique<SoundEffect>(mAudioEngine.get(), L"Content\\Sounds\\Projects.wav"));
+
+	mPaulSounds.push_back(std::make_unique<SoundEffect>(mAudioEngine.get(), L"Content\\Sounds\\AhaOne.wav"));
+	mPaulSounds.push_back(std::make_unique<SoundEffect>(mAudioEngine.get(), L"Content\\Sounds\\AhaTwo.wav"));
+	mPaulSounds.push_back(std::make_unique<SoundEffect>(mAudioEngine.get(), L"Content\\Sounds\\Bleargh.wav"));
+	mPaulSounds.push_back(std::make_unique<SoundEffect>(mAudioEngine.get(), L"Content\\Sounds\\ItsNotALotOfData.wav"));
+	mPaulSounds.push_back(std::make_unique<SoundEffect>(mAudioEngine.get(), L"Content\\Sounds\\OhMyGoodness.wav"));
+	mPaulSounds.push_back(std::make_unique<SoundEffect>(mAudioEngine.get(), L"Content\\Sounds\\OkaysOkayOkay.wav"));
+	mPaulSounds.push_back(std::make_unique<SoundEffect>(mAudioEngine.get(), L"Content\\Sounds\\Woo!.wav"));
+	mPaulSounds.push_back(std::make_unique<SoundEffect>(mAudioEngine.get(), L"Content\\Sounds\\YoureNotGettingIt.wav"));
 }
 
 
@@ -35,4 +44,10 @@ void Sounds::RandomTom()
 {
 	int randomDialogue = rand() % mTomSounds.size();
 	mTomSounds.at(randomDialogue)->Play();
+}
+
+void Sounds::RandomPaul()
+{
+	int randomDialogue = rand() % mPaulSounds.size();
+	mPaulSounds.at(randomDialogue)->Play();
 }

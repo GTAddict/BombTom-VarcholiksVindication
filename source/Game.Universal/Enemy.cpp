@@ -12,25 +12,50 @@ Enemy::Enemy(Player& player)
 	: mPlayer(player)
 	, mAngularSpeed((static_cast <float> (rand()) / static_cast <float> (RAND_MAX) / 500) - 0.001f)
 {
-	int randomSprite = rand() % 5;
+	int randomSprite = rand() % 10;
 	float randomRotation = static_cast<float>(rand() % 2 * M_PI);
 
 	switch (randomSprite)
 	{
 	case 0:
 		Init(SpriteType::TomOne, 0, 0, 40, 54, 1, randomRotation, (int)Layers::enemy);
+		mEnemyType = EnemyType::Tom;
 		break;
 	case 1:
 		Init(SpriteType::TomTwo, 0, 0, 40, 49, 1, randomRotation, (int)Layers::enemy);
+		mEnemyType = EnemyType::Tom;
 		break;
 	case 2:
 		Init(SpriteType::TomThree, 0, 0, 39, 52, 1, randomRotation, (int)Layers::enemy);
+		mEnemyType = EnemyType::Tom;
 		break;
 	case 3:
 		Init(SpriteType::TomFour, 0, 0, 40, 46, 1, randomRotation, (int)Layers::enemy);
+		mEnemyType = EnemyType::Tom;
 		break;
 	case 4:
 		Init(SpriteType::Tom5, 0, 0, 40, 50, 1, randomRotation, (int)Layers::enemy);
+		mEnemyType = EnemyType::Tom;
+		break;
+	case 5:
+		Init(SpriteType::PaulOne, 0, 0, 40, 62, 1, randomRotation, (int)Layers::enemy);
+		mEnemyType = EnemyType::Paul;
+		break;
+	case 6:
+		Init(SpriteType::PaulTwo, 0, 0, 40, 48, 1, randomRotation, (int)Layers::enemy);
+		mEnemyType = EnemyType::Paul;
+		break;
+	case 7:
+		Init(SpriteType::PaulThree, 0, 0, 40, 56, 1, randomRotation, (int)Layers::enemy);
+		mEnemyType = EnemyType::Paul;
+		break;
+	case 8:
+		Init(SpriteType::PaulFour, 0, 0, 40, 55, 1, randomRotation, (int)Layers::enemy);
+		mEnemyType = EnemyType::Paul;
+		break;
+	case 9:
+		Init(SpriteType::Paul5, 0, 0, 40, 56, 1, randomRotation, (int)Layers::enemy);
+		mEnemyType = EnemyType::Paul;
 		break;
 	}
 

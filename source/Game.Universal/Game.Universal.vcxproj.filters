@@ -100,6 +100,21 @@
     <Image Include="Content\Textures\Krishna.png">
       <Filter>Content\Textures</Filter>
     </Image>
+    <Image Include="Content\Textures\Paul5.png">
+      <Filter>Content\Textures</Filter>
+    </Image>
+    <Image Include="Content\Textures\PaulFour.png">
+      <Filter>Content\Textures</Filter>
+    </Image>
+    <Image Include="Content\Textures\PaulOne.png">
+      <Filter>Content\Textures</Filter>
+    </Image>
+    <Image Include="Content\Textures\PaulThree.png">
+      <Filter>Content\Textures</Filter>
+    </Image>
+    <Image Include="Content\Textures\PaulTwo.png">
+      <Filter>Content\Textures</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />
@@ -130,6 +145,30 @@
       <Filter>Content\Sounds</Filter>
     </Media>
     <Media Include="Content\Sounds\Exams.wav">
+      <Filter>Content\Sounds</Filter>
+    </Media>
+    <Media Include="Content\Sounds\AhaOne.wav">
+      <Filter>Content\Sounds</Filter>
+    </Media>
+    <Media Include="Content\Sounds\AhaTwo.wav">
+      <Filter>Content\Sounds</Filter>
+    </Media>
+    <Media Include="Content\Sounds\Bleargh.wav">
+      <Filter>Content\Sounds</Filter>
+    </Media>
+    <Media Include="Content\Sounds\ItsNotALotOfData.wav">
+      <Filter>Content\Sounds</Filter>
+    </Media>
+    <Media Include="Content\Sounds\OhMyGoodness.wav">
+      <Filter>Content\Sounds</Filter>
+    </Media>
+    <Media Include="Content\Sounds\OkaysOkayOkay.wav">
+      <Filter>Content\Sounds</Filter>
+    </Media>
+    <Media Include="Content\Sounds\Woo!.wav">
+      <Filter>Content\Sounds</Filter>
+    </Media>
+    <Media Include="Content\Sounds\YoureNotGettingIt.wav">
       <Filter>Content\Sounds</Filter>
     </Media>
   </ItemGroup>

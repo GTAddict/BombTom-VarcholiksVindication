@@ -101,7 +101,7 @@ namespace DirectXGame
 				}
 				else
 				{
-					mSounds->RandomTom();
+					mSounds->RandomPaul();
 					pendingKill.push_back(enemy);
 				}
 			}
@@ -121,13 +121,18 @@ namespace DirectXGame
 				int randomX = (rand() % (1920 - player->GetWidth())) + player->GetWidth() / 2;
 
 				enemy->SetPosition(randomX, 1080 - player->GetHeight() / 2);
+				if (enemy->GetEnemyType() == EnemyType::Tom)
+				{
+					mSounds->RandomTom();
+				}
+
 
 				enemyList.push_back(enemy);
 			}
 
 			if (!player->GetAlive())
 			{
-				mSounds->RandomTom();
+				mSounds->RandomPaul();
 				RestartGameplay();
 			}
 

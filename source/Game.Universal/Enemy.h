@@ -6,6 +6,12 @@
 
 class Bullet;
 
+enum class EnemyType
+{
+	Tom,
+	Paul
+};
+
 class Enemy : public Sprite
 {
 public:
@@ -22,6 +28,7 @@ public:
 	void SetSpeedY(float speed) { mSpeedY = speed; }
 
 	bool IsAlive() { return mIsAlive; }
+	EnemyType GetEnemyType() { return mEnemyType; }
 
 	void RandomizeTimer();
 
@@ -34,6 +41,7 @@ private:
 	float mAngularSpeed;
 
 	Player& mPlayer;
+	EnemyType mEnemyType;
 	std::list<std::shared_ptr<Bullet>> mBulletList;
 };
 

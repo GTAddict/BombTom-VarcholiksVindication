@@ -244,6 +244,11 @@
     <Image Include="Content\Textures\Books.png" />
     <Image Include="Content\Textures\Krishna.png" />
     <Image Include="Content\Textures\Lima.png" />
+    <Image Include="Content\Textures\Paul5.png" />
+    <Image Include="Content\Textures\PaulFour.png" />
+    <Image Include="Content\Textures\PaulOne.png" />
+    <Image Include="Content\Textures\PaulThree.png" />
+    <Image Include="Content\Textures\PaulTwo.png" />
     <Image Include="Content\Textures\snoods_default.png" />
     <Image Include="Content\Textures\Tom5.png" />
     <Image Include="Content\Textures\TomFour.png" />
@@ -319,11 +324,19 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
+    <Media Include="Content\Sounds\AhaOne.wav" />
+    <Media Include="Content\Sounds\AhaTwo.wav" />
     <Media Include="Content\Sounds\Assignments.wav" />
+    <Media Include="Content\Sounds\Bleargh.wav" />
     <Media Include="Content\Sounds\Exams.wav" />
     <Media Include="Content\Sounds\Finals.wav" />
     <Media Include="Content\Sounds\Homework.wav" />
+    <Media Include="Content\Sounds\ItsNotALotOfData.wav" />
+    <Media Include="Content\Sounds\OhMyGoodness.wav" />
+    <Media Include="Content\Sounds\OkaysOkayOkay.wav" />
     <Media Include="Content\Sounds\Projects.wav" />
+    <Media Include="Content\Sounds\Woo!.wav" />
+    <Media Include="Content\Sounds\YoureNotGettingIt.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
