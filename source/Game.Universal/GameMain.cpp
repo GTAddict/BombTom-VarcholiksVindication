@@ -53,15 +53,11 @@ namespace DirectXGame
 		SpriteManagerHelper::GetInstance()->SetCache(*spriteCache.get());
 		mComponents.push_back(spriteCache);
 
-		bg = make_shared<Background>(1920, 1080);
-		player = make_shared<Player>(mKeyboard, mGamePad);
-		enemyTimerElapsedMs = 0;
-		dialogueTimeElapsedMs = 0;
-
 		mTimer.SetFixedTimeStep(true);
 		mTimer.SetTargetElapsedSeconds(1.0 / 60);
 
 		IntializeResources();
+		CreateGameplaySpecific();
 	}
 
 	GameMain::~GameMain()
@@ -132,7 +128,7 @@ namespace DirectXGame
 			if (!player->GetAlive())
 			{
 				mSounds->RandomTom();
-				CoreApplication::Exit();
+				RestartGameplay();
 			}
 
 			if (mKeyboard->WasKeyPressedThisFrame(Keys::Escape) ||
@@ -202,5 +198,26 @@ namespace DirectXGame
 		}
 
 		CreateWindowSizeDependentResources();
+	}
+
+	void GameMain::CreateGameplaySpecific()
+	{
+		bg = make_shared<Background>(1920, 1080);
+		player = make_shared<Player>(mKeyboard, mGamePad);
+		enemyTimerElapsedMs = 0;
+		dialogueTimeElapsedMs = 0;
+	}
+
+	void GameMain::DestroyGameplaySpecific()
+	{
+		bg = nullptr;
+		player = nullptr;
+		enemyList.clear();
+	}
+
+	void GameMain::RestartGameplay()
+	{
+		DestroyGameplaySpecific();
+		CreateGameplaySpecific();
 	}
 }

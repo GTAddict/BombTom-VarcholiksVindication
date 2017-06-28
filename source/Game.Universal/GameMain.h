@@ -36,6 +36,10 @@ namespace DirectXGame
 	private:
 		void IntializeResources();
 
+		void CreateGameplaySpecific();
+		void DestroyGameplaySpecific();
+		void RestartGameplay();
+
 		std::shared_ptr<DX::DeviceResources> mDeviceResources;
 		std::vector<std::shared_ptr<DX::GameComponent>> mComponents;
 		std::vector<std::shared_ptr<Sprite>> mSprites;
