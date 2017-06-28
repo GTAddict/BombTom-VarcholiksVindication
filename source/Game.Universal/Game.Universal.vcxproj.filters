@@ -32,6 +32,9 @@
     <Filter Include="Content\Textures">
       <UniqueIdentifier>{76a8eddb-f0a9-4dde-9b69-0db8ffd3eee2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Content\Sounds">
+      <UniqueIdentifier>{17201d00-6b61-4f92-a158-97c7b962529e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
@@ -46,6 +49,7 @@
     <ClCompile Include="BackgroundSingleTile.cpp" />
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="SpriteManagerHelper.cpp" />
+    <ClCompile Include="Sounds.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
@@ -60,6 +64,7 @@
     <ClInclude Include="Background.h" />
     <ClInclude Include="BackgroundSingleTile.h" />
     <ClInclude Include="SpriteManagerHelper.h" />
+    <ClInclude Include="Sounds.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\StoreLogo.png">
@@ -110,5 +115,22 @@
     <FxCompile Include="Content\Shaders\SpriteRendererPS.hlsl">
       <Filter>Content\Shaders</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Content\Sounds\Finals.wav">
+      <Filter>Content\Sounds</Filter>
+    </Media>
+    <Media Include="Content\Sounds\Homework.wav">
+      <Filter>Content\Sounds</Filter>
+    </Media>
+    <Media Include="Content\Sounds\Projects.wav">
+      <Filter>Content\Sounds</Filter>
+    </Media>
+    <Media Include="Content\Sounds\Assignments.wav">
+      <Filter>Content\Sounds</Filter>
+    </Media>
+    <Media Include="Content\Sounds\Exams.wav">
+      <Filter>Content\Sounds</Filter>
+    </Media>
   </ItemGroup>
 </Project>

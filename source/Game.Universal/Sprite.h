@@ -1,6 +1,9 @@
 #pragma once
 #include "DeviceResources.h"
 #include <string>
+#include <map>
+#include <string>
+#include <functional>
 
 class SpriteCache;
 class SpriteRenderer;

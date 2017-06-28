@@ -41,6 +41,8 @@ namespace DirectXGame
 		auto fpsTextRenderer = make_shared<FpsTextRenderer>(mDeviceResources);
 		mComponents.push_back(fpsTextRenderer);
 
+		mSounds = make_shared<Sounds>(mDeviceResources);
+
 		SpriteManagerHelper::GetInstance()->SetDeviceResources(mDeviceResources);
 
 		auto spriteRenderer = make_shared<SpriteRenderer>(mDeviceResources, camera);
@@ -76,29 +78,6 @@ namespace DirectXGame
 		}
 	}
 
-	void GameMain::RandomTom()
-	{
-		/*int randomDialogue = rand() % 5;
-		switch (randomDialogue)
-		{
-		case 0:
-			PlaySound("sound\\Assignments.wav", NULL, SND_ASYNC);
-			break;
-		case 1:
-			PlaySound("sound\\Exams.wav", NULL, SND_ASYNC);
-			break;
-		case 2:
-			PlaySound("sound\\Finals.wav", NULL, SND_ASYNC);
-			break;
-		case 3:
-			PlaySound("sound\\Homework.wav", NULL, SND_ASYNC);
-			break;
-		case 4:
-			PlaySound("sound\\Projects.wav", NULL, SND_ASYNC);
-			break;
-		}*/
-	}
-
 	// Updates the application state once per frame.
 	void GameMain::Update()
 	{
@@ -126,7 +105,7 @@ namespace DirectXGame
 				}
 				else
 				{
-					RandomTom();
+					mSounds->RandomTom();
 					pendingKill.push_back(enemy);
 				}
 			}
@@ -152,7 +131,7 @@ namespace DirectXGame
 
 			if (!player->GetAlive())
 			{
-				RandomTom();
+				mSounds->RandomTom();
 				CoreApplication::Exit();
 			}
 

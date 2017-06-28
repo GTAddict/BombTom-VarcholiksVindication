@@ -16,6 +16,7 @@ namespace DX
 class Background;
 class Player;
 class Enemy;
+class Sounds;
 
 // Renders Direct2D and 3D content on the screen.
 namespace DirectXGame
@@ -32,8 +33,6 @@ namespace DirectXGame
 		virtual void OnDeviceLost();
 		virtual void OnDeviceRestored();
 
-		void RandomTom();
-
 	private:
 		void IntializeResources();
 
@@ -44,6 +43,7 @@ namespace DirectXGame
 		std::shared_ptr<DX::KeyboardComponent> mKeyboard;
 		std::shared_ptr<DX::MouseComponent> mMouse;
 		std::shared_ptr<DX::GamePadComponent> mGamePad;
+		std::shared_ptr<Sounds> mSounds;
 
 		std::shared_ptr<Background> bg;
 		std::shared_ptr<Player> player;

@@ -20,6 +20,9 @@
 #include <SimpleMath.h>
 #include <WICTextureLoader.h>
 
+// TK
+#include <Audio.h>
+
 // Standard
 #include <memory>
 #include <string>
@@ -45,6 +48,7 @@
 #include "GamePadComponent.h"
 
 // Local
+#include "Sounds.h"
 #include "SpriteCache.h"
 #include "SpriteRenderer.h"
 #include "SpriteManagerHelper.h"
