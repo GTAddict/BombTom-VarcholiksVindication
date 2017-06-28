@@ -30,13 +30,14 @@ public:
 	Sprite();
 	virtual ~Sprite();
 
-	void Init(SpriteType sprite, int x, int y, int width, int height, float scale, int layer);
+	void Init(SpriteType sprite, int x, int y, int width, int height, float scale, float rotation, int layer);
 	void InitializeVertices();
 	void Destroy();
 
 	void SetPosition(int x, int y);
 	virtual void SetPositionX(int x);
 	virtual void SetPositionY(int y);
+	void SetRotation(float rotation);
 
 	int GetPositionX()				{ return mPosX; }
 	int GetPositionY()				{ return mPosY; }
@@ -45,6 +46,7 @@ public:
 	int GetHeight()					{ return mHeight; }
 
 	float GetScale()				{ return mScale; }
+	float GetRotation()				{ return mRotation; }
 
 	void SetVisible(bool visible)	{ mVisible = visible; }
 	bool GetVisible() const			{ return mVisible; }
@@ -70,6 +72,7 @@ protected:
 	int														mWidth;
 	int														mHeight;
 	float													mScale;
+	float													mRotation;
 	int														mLayerID;
 	bool													mVisible;
 

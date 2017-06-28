@@ -10,25 +10,27 @@
 
 Enemy::Enemy(Player& player)
 	: mPlayer(player)
+	, mAngularSpeed((static_cast <float> (rand()) / static_cast <float> (RAND_MAX) / 500) - 0.001f)
 {
 	int randomSprite = rand() % 5;
+	float randomRotation = static_cast<float>(rand() % 2 * M_PI);
 
 	switch (randomSprite)
 	{
 	case 0:
-		Init(SpriteType::TomOne, 0, 0, 40, 54, 1, (int)Layers::enemy);
+		Init(SpriteType::TomOne, 0, 0, 40, 54, 1, randomRotation, (int)Layers::enemy);
 		break;
 	case 1:
-		Init(SpriteType::TomTwo, 0, 0, 40, 49, 1, (int)Layers::enemy);
+		Init(SpriteType::TomTwo, 0, 0, 40, 49, 1, randomRotation, (int)Layers::enemy);
 		break;
 	case 2:
-		Init(SpriteType::TomThree, 0, 0, 39, 52, 1, (int)Layers::enemy);
+		Init(SpriteType::TomThree, 0, 0, 39, 52, 1, randomRotation, (int)Layers::enemy);
 		break;
 	case 3:
-		Init(SpriteType::TomFour, 0, 0, 40, 46, 1, (int)Layers::enemy);
+		Init(SpriteType::TomFour, 0, 0, 40, 46, 1, randomRotation, (int)Layers::enemy);
 		break;
 	case 4:
-		Init(SpriteType::Tom5, 0, 0, 40, 50, 1, (int)Layers::enemy);
+		Init(SpriteType::Tom5, 0, 0, 40, 50, 1, randomRotation, (int)Layers::enemy);
 		break;
 	}
 
@@ -141,4 +143,6 @@ void Enemy::UpdateFrame(long milliseconds)
 
 	SetPositionX((int)(mPosX + mSpeedX * milliseconds));
 	SetPositionY((int)(mPosY + mSpeedY * milliseconds));
+
+	SetRotation(GetRotation() + milliseconds * mAngularSpeed);
 }

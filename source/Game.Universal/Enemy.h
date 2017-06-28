@@ -31,6 +31,7 @@ private:
 	float mSpeedY;
 
 	float mShootTimer;
+	float mAngularSpeed;
 
 	Player& mPlayer;
 	std::list<std::shared_ptr<Bullet>> mBulletList;

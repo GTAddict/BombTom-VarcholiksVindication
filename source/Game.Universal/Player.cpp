@@ -10,7 +10,7 @@
 
 Player::Player(std::shared_ptr<DX::KeyboardComponent> keyboardComponent, std::shared_ptr<DX::GamePadComponent> gamepadComponent)
 {
-	Init(SpriteType::Krishna, 0, 0, 59, 98, 1.0f, (int)Layers::player);
+	Init(SpriteType::Krishna, 0, 0, 59, 98, 1.0f, 0, (int)Layers::player);
 	SetSpeed(500);
 	mAlive = true;
 	mTimeSinceLastFire = ANTI_SPAM_LIMIT;

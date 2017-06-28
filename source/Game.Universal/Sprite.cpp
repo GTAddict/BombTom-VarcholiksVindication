@@ -37,7 +37,7 @@ Sprite::~Sprite()
 	Destroy();
 }
 
-void Sprite::Init(SpriteType sprite, int x, int y, int width, int height, float scale, int layer)
+void Sprite::Init(SpriteType sprite, int x, int y, int width, int height, float scale, float rotation, int layer)
 {
 
 	mScale = scale;
@@ -47,6 +47,8 @@ void Sprite::Init(SpriteType sprite, int x, int y, int width, int height, float 
 
 	SetPositionX(x);
 	SetPositionY(y);
+
+	SetRotation(rotation);
 
 	mLayerID = layer;
 
@@ -97,6 +99,11 @@ void Sprite::SetPositionY(int y)
 	mPosY = y;
 }
 
+void Sprite::SetRotation(float rotation)
+{
+	mRotation = rotation;
+}
+
 bool Sprite::Intersects(Sprite* other)
 {
 	if (mPosX < other->mPosX + other->mWidth
@@ -112,7 +119,7 @@ bool Sprite::Intersects(Sprite* other)
 
 DX::Transform2D Sprite::GetTransform() const
 {
-	return DX::Transform2D(DirectX::XMFLOAT2(static_cast<float>(mPosX), static_cast<float>(mPosY)), 0, XMFLOAT2(mScale, mScale));
+	return DX::Transform2D(DirectX::XMFLOAT2(static_cast<float>(mPosX), static_cast<float>(mPosY)), mRotation, XMFLOAT2(mScale, mScale));
 }
 
 DirectX::XMFLOAT4X4 Sprite::GetTextureTransform() const
