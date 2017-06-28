@@ -72,17 +72,20 @@ void Player::UpdateFrame(long milliseconds)
 
 	pendingKill.clear();
 
-	if (mKeyboardComponent->IsKeyDown(DX::Keys::Left) || mGamepadComponent->IsButtonDown(DX::GamePadButtons::DPadLeft))
+	if (mKeyboardComponent->IsKeyDown(DX::Keys::Left) || mGamepadComponent->IsButtonDown(DX::GamePadButtons::DPadLeft) || mGamepadComponent->IsButtonDown(DX::GamePadButtons::LeftStick))
 	{
 		SetPositionX((int) (mPosX - mSpeed * milliseconds));
 	}
 
-	if (mKeyboardComponent->IsKeyDown(DX::Keys::Right) || mGamepadComponent->IsButtonDown(DX::GamePadButtons::DPadRight))
+	if (mKeyboardComponent->IsKeyDown(DX::Keys::Right) || mGamepadComponent->IsButtonDown(DX::GamePadButtons::DPadRight) || mGamepadComponent->IsButtonDown(DX::GamePadButtons::RightStick))
 	{
 		SetPositionX((int) (mPosX + mSpeed * milliseconds));
 	}
 
-	if (mKeyboardComponent->IsKeyDown(DX::Keys::Space) || mGamepadComponent->IsButtonDown(DX::GamePadButtons::X))
+	if ( mKeyboardComponent->IsKeyDown(DX::Keys::Space) || mGamepadComponent->IsButtonDown(DX::GamePadButtons::X) || mGamepadComponent->IsButtonDown(DX::GamePadButtons::Y)
+			||	mGamepadComponent->IsButtonDown(DX::GamePadButtons::A) || mGamepadComponent->IsButtonDown(DX::GamePadButtons::B)
+			|| mGamepadComponent->IsButtonDown(DX::GamePadButtons::LeftShoulder) || mGamepadComponent->IsButtonDown(DX::GamePadButtons::RightShoulder)
+		)
 	{
  		if (mBulletsInBurstRemaining > 0)
 		{

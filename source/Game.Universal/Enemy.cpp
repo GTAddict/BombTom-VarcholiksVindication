@@ -59,6 +59,11 @@ Enemy::Enemy(Player& player)
 		break;
 	}
 
+	if (mEnemyType == EnemyType::Paul)
+	{
+		mAngularSpeed = 0;
+	}
+
 	SetSpeedX(0.1f);
 	SetSpeedY(-0.01f);
 	int random = rand() % 2;
